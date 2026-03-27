@@ -1,0 +1,10 @@
+[
+  {
+    "slug": "hello-world",
+    "title": "Hello World — Welcome to My Dev Blog",
+    "date": "2025-03-27",
+    "excerpt": "First post on rajbandi.dev. Why I built this site, what I'll be writing about, and what's coming next.",
+    "readTime": "3 min read",
+    "tags": ["meta", "personal"]
+  }
+]

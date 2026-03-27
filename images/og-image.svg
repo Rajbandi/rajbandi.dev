@@ -1,0 +1,35 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#09090b"/>
+      <stop offset="100%" style="stop-color:#18181b"/>
+    </linearGradient>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,153,51,0.06)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <!-- Saffron glow -->
+  <ellipse cx="900" cy="315" rx="300" ry="200" fill="rgba(255,153,51,0.08)"/>
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="1200" height="4" fill="#ff9933"/>
+  <!-- Logo -->
+  <text x="80" y="120" font-family="monospace" font-size="28" font-weight="bold" fill="#ff9933">&lt;rb /&gt;</text>
+  <!-- Name -->
+  <text x="80" y="260" font-family="monospace" font-size="72" font-weight="bold" fill="#fafafa">Raj</text>
+  <text x="260" y="260" font-family="monospace" font-size="72" font-weight="bold" fill="#ff9933">Bandi</text>
+  <!-- Title -->
+  <text x="80" y="320" font-family="system-ui, sans-serif" font-size="28" fill="#a1a1aa">Senior Full Stack &amp; Mobile Developer</text>
+  <!-- Domains -->
+  <text x="80" y="380" font-family="monospace" font-size="20" fill="#71717a">.NET  |  Cross-platform Mobile  |  Blockchain  |  Bioinformatics</text>
+  <!-- ORIC Labs -->
+  <text x="80" y="430" font-family="monospace" font-size="18" fill="#ff9933">Founder, ORIC Labs</text>
+  <text x="310" y="430" font-family="monospace" font-size="18" fill="#52525b">- Open Research &amp; Inference Center</text>
+  <!-- Bottom bar -->
+  <rect x="80" y="520" width="120" height="3" rx="2" fill="#ff9933"/>
+  <!-- URL -->
+  <text x="80" y="570" font-family="monospace" font-size="22" fill="#52525b">rajbandi.dev</text>
+  <!-- Social -->
+  <text x="340" y="570" font-family="monospace" font-size="18" fill="#3f3f46">github.com/rajbandi  |  linkedin.com/in/rbandi  |  @rajbandi</text>
+</svg>

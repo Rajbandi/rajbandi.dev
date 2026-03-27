@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --color-saffron-50: #fff8eb;
+  --color-saffron-100: #ffecc6;
+  --color-saffron-200: #ffd688;
+  --color-saffron-300: #ffbc4b;
+  --color-saffron-400: #ff9933;
+  --color-saffron-500: #f97316;
+  --color-saffron-600: #dd5a0a;
+  --color-saffron-700: #b7400c;
+  --color-saffron-800: #943210;
+  --color-saffron-900: #7a2b11;
+
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}

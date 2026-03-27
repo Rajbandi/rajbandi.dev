@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Raj Bandi</title>
+  <meta name="description" content="Articles on .NET, mobile development, blockchain, bioinformatics, and more by Raj Bandi.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            saffron: {
+              50: '#fff8eb', 100: '#ffecc6', 200: '#ffd688', 300: '#ffbc4b',
+              400: '#ff9933', 500: '#f97316', 600: '#dd5a0a', 700: '#b7400c',
+              800: '#943210', 900: '#7a2b11',
+            }
+          },
+          fontFamily: {
+            mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+            sans: ['"Inter"', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-zinc-950 text-zinc-300 font-sans antialiased">
+  <nav class="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
+    <div class="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../" class="font-mono font-bold text-lg text-saffron-400 hover:text-saffron-300 transition-colors">&lt;rb /&gt;</a>
+      <a href="../#blog" class="text-sm text-zinc-400 hover:text-saffron-400 transition-colors font-mono">back to site</a>
+    </div>
+  </nav>
+  <main class="max-w-3xl mx-auto px-6 pt-32 pb-24">
+    <h1 class="font-mono text-3xl font-bold text-zinc-100 mb-2"><span class="text-saffron-400">#</span> blog</h1>
+    <div class="w-16 h-1 bg-saffron-400 mb-12 rounded-full"></div>
+    <div id="posts-list"></div>
+  </main>
+  <script>
+    (async function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+
+      const res = await fetch('posts/index.json');
+      const posts = await res.json();
+      const container = document.getElementById('posts-list');
+
+      posts.forEach(function(post) {
+        const el = document.createElement('a');
+        el.href = '../#blog/' + post.slug;
+        el.className = 'block bg-zinc-900 border border-zinc-800 rounded-lg p-6 mb-4 hover:border-saffron-400/50 transition-all';
+        el.innerHTML =
+          '<div class="flex items-center gap-2 mb-2">' +
+          '<span class="font-mono text-xs text-zinc-500">' + post.date + '</span>' +
+          '<span class="text-zinc-700">|</span>' +
+          '<span class="text-xs text-zinc-500">' + (post.readTime || '') + '</span></div>' +
+          '<h2 class="font-mono font-semibold text-lg text-zinc-200 mb-2">' + post.title + '</h2>' +
+          '<p class="text-sm text-zinc-400">' + (post.excerpt || '') + '</p>' +
+          (post.tags ? '<div class="flex gap-2 mt-3">' + post.tags.map(function(t) {
+            return '<span class="text-xs text-saffron-400 bg-saffron-400/10 px-2 py-0.5 rounded font-mono">' + t + '</span>';
+          }).join('') + '</div>' : '');
+        container.appendChild(el);
+      });
+    })();
+  </script>
+</body>
+</html>

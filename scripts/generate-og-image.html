@@ -1,0 +1,63 @@
+<!--
+  Open this file in a browser at 1200x630 and screenshot to create og-image.png.
+  Or use: npx capture-website-cli scripts/generate-og-image.html --output images/og-image.png --width 1200 --height 630
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap');
+    body {
+      width: 1200px; height: 630px;
+      background: linear-gradient(135deg, #09090b 0%, #18181b 100%);
+      color: #fafafa;
+      font-family: 'Inter', system-ui, sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,153,51,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,153,51,0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .glow {
+      position: absolute; top: 50%; right: 10%; width: 500px; height: 400px;
+      background: radial-gradient(ellipse, rgba(255,153,51,0.12) 0%, transparent 70%);
+      transform: translateY(-50%);
+    }
+    .accent { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: #ff9933; }
+    .content { position: relative; z-index: 1; padding: 60px 80px; }
+    .logo { font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 700; color: #ff9933; margin-bottom: 60px; }
+    .name { font-family: 'JetBrains Mono', monospace; font-size: 64px; font-weight: 700; margin-bottom: 16px; }
+    .name span { color: #ff9933; }
+    .title { font-size: 26px; color: #a1a1aa; margin-bottom: 12px; }
+    .domains { font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #71717a; margin-bottom: 16px; }
+    .oric { font-family: 'JetBrains Mono', monospace; font-size: 16px; }
+    .oric .label { color: #ff9933; }
+    .oric .desc { color: #52525b; }
+    .bar { width: 120px; height: 3px; background: #ff9933; border-radius: 2px; margin: 40px 0 20px; }
+    .url { font-family: 'JetBrains Mono', monospace; font-size: 20px; color: #52525b; }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow"></div>
+  <div class="accent"></div>
+  <div class="content">
+    <div class="logo">&lt;rb /&gt;</div>
+    <div class="name">Raj <span>Bandi</span></div>
+    <div class="title">Senior Full Stack & Mobile Developer</div>
+    <div class="domains">.NET &nbsp;|&nbsp; Cross-platform Mobile &nbsp;|&nbsp; Blockchain &nbsp;|&nbsp; Bioinformatics</div>
+    <div class="oric">
+      <span class="label">Founder, ORIC Labs</span>
+      <span class="desc"> — Open Research & Inference Center</span>
+    </div>
+    <div class="bar"></div>
+    <div class="url">rajbandi.dev</div>
+  </div>
+</body>
+</html>

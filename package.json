@@ -1,0 +1,16 @@
+{
+  "name": "rajbandi.dev",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal developer portfolio and blog for Raj Bandi",
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i css/tailwind.css -o css/style.built.css --watch",
+    "build:css": "npx @tailwindcss/cli -i css/tailwind.css -o css/style.built.css --minify",
+    "build:rss": "node scripts/generate-rss.js",
+    "build": "npm run build:css && npm run build:rss",
+    "serve": "npx serve ."
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0"
+  }
+}

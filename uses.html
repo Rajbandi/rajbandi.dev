@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>/uses — Raj Bandi</title>
+  <meta name="description" content="Tools, hardware, and software Raj Bandi uses for development.">
+  <link rel="canonical" href="https://rajbandi.dev/uses.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            saffron: {
+              50: '#fff8eb', 100: '#ffecc6', 200: '#ffd688', 300: '#ffbc4b',
+              400: '#ff9933', 500: '#f97316', 600: '#dd5a0a', 700: '#b7400c',
+              800: '#943210', 900: '#7a2b11',
+            }
+          },
+          fontFamily: {
+            mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+            sans: ['"Inter"', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-zinc-950 text-zinc-300 font-sans antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
+    <div class="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="./" class="font-mono font-bold text-lg text-saffron-400 hover:text-saffron-300 transition-colors">&lt;rb /&gt;</a>
+      <div class="flex items-center gap-6">
+        <a href="./" class="text-sm text-zinc-400 hover:text-saffron-400 transition-colors font-mono">home</a>
+        <a href="./#blog" class="text-sm text-zinc-400 hover:text-saffron-400 transition-colors font-mono">blog</a>
+        <span class="text-sm text-saffron-400 font-mono">/uses</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-3xl mx-auto px-6 pt-32 pb-24">
+    <h1 class="font-mono text-3xl md:text-4xl font-bold text-zinc-100 mb-2">
+      <span class="text-saffron-400">/</span>uses
+    </h1>
+    <p class="text-zinc-400 mb-12 max-w-xl">
+      The tools, languages, and setup I use daily for development. Inspired by
+      <a href="https://uses.tech" target="_blank" rel="noopener" class="text-saffron-400 hover:text-saffron-300 underline underline-offset-2">uses.tech</a>.
+    </p>
+
+    <!-- Languages & Frameworks -->
+    <section class="mb-16">
+      <h2 class="font-mono text-xl font-semibold text-zinc-100 mb-6 flex items-center gap-2">
+        <span class="text-saffron-400">#</span> Languages & Frameworks
+      </h2>
+      <div class="space-y-4">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">C# / .NET</h3>
+          <p class="text-sm text-zinc-400">My primary language for 20+ years. ASP.NET Core, Entity Framework, Blazor, MAUI. The backbone of most enterprise and mobile work.</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">Rust</h3>
+          <p class="text-sm text-zinc-400">Compiler and runtime for BioLang. Also used in Ibid's citation engine. Love the type system and fearless concurrency.</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">JavaScript / TypeScript</h3>
+          <p class="text-sm text-zinc-400">Browser extensions, web apps, and Node tooling. Vanilla JS when possible, TypeScript for anything non-trivial.</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">Dart / Flutter</h3>
+          <p class="text-sm text-zinc-400">Cross-platform mobile apps. Hot reload makes iteration fast. Used for OzBargains and other mobile projects.</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">HTML / CSS / Tailwind</h3>
+          <p class="text-sm text-zinc-400">Utility-first CSS with Tailwind. This site is built with it. For complex layouts, plain CSS Grid and Flexbox.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editor & IDE -->
+    <section class="mb-16">
+      <h2 class="font-mono text-xl font-semibold text-zinc-100 mb-6 flex items-center gap-2">
+        <span class="text-saffron-400">#</span> Editor & IDE
+      </h2>
+      <div class="space-y-4">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">Visual Studio 2022</h3>
+          <p class="text-sm text-zinc-400">Primary IDE for .NET, MAUI, and Blazor projects. ReSharper for refactoring and code analysis.</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">VS Code</h3>
+          <p class="text-sm text-zinc-400">For everything else — JavaScript, Rust, Dart, markdown, config files. Extensions: GitLens, Tailwind IntelliSense, Rust Analyzer.</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">JetBrains Mono</h3>
+          <p class="text-sm text-zinc-400">Editor font of choice. Clean, purpose-built for code, with excellent ligatures.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DevOps & Cloud -->
+    <section class="mb-16">
+      <h2 class="font-mono text-xl font-semibold text-zinc-100 mb-6 flex items-center gap-2">
+        <span class="text-saffron-400">#</span> DevOps & Cloud
+      </h2>
+      <div class="space-y-4">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">Azure / Azure DevOps</h3>
+          <p class="text-sm text-zinc-400">CI/CD pipelines, App Services, Azure Functions, SQL databases. Primary cloud for enterprise work.</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">GitHub Actions</h3>
+          <p class="text-sm text-zinc-400">Open-source CI/CD. This site deploys via GitHub Actions to GitHub Pages.</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">Docker</h3>
+          <p class="text-sm text-zinc-400">Containerized builds and local dev environments. Docker Compose for multi-service setups.</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">Git</h3>
+          <p class="text-sm text-zinc-400">Version control for everything. Conventional commits, feature branching, PRs. CLI over GUIs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI & Productivity -->
+    <section class="mb-16">
+      <h2 class="font-mono text-xl font-semibold text-zinc-100 mb-6 flex items-center gap-2">
+        <span class="text-saffron-400">#</span> AI & Productivity
+      </h2>
+      <div class="space-y-4">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">Claude Code</h3>
+          <p class="text-sm text-zinc-400">AI pair programming in the terminal. This entire site was built with it. Great for scaffolding, refactoring, and exploring codebases.</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">GitHub Copilot</h3>
+          <p class="text-sm text-zinc-400">Inline completions in VS Code. Especially useful for boilerplate and test generation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Browser & Extensions -->
+    <section class="mb-16">
+      <h2 class="font-mono text-xl font-semibold text-zinc-100 mb-6 flex items-center gap-2">
+        <span class="text-saffron-400">#</span> Browser & Extensions
+      </h2>
+      <div class="space-y-4">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">Firefox / Chrome / Edge</h3>
+          <p class="text-sm text-zinc-400">Multi-browser testing for extension development. Firefox DevTools for CSS, Chrome for JS profiling.</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">My own extensions</h3>
+          <p class="text-sm text-zinc-400">I dogfood BioPeek, BioGist, BioKhoj, and Ibid daily. Building tools I actually use.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- This Site -->
+    <section>
+      <h2 class="font-mono text-xl font-semibold text-zinc-100 mb-6 flex items-center gap-2">
+        <span class="text-saffron-400">#</span> This Site
+      </h2>
+      <div class="space-y-4">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">Stack</h3>
+          <p class="text-sm text-zinc-400">Tailwind CSS (production build), vanilla JavaScript, static HTML. No frameworks, no bundlers beyond Tailwind CLI. Markdown blog rendered client-side.</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">Hosting</h3>
+          <p class="text-sm text-zinc-400">GitHub Pages with GitHub Actions for deployment. Custom domain via CNAME. Free, fast, version-controlled.</p>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5 hover:border-saffron-400/30 transition-all">
+          <h3 class="font-mono font-semibold text-zinc-200 mb-1">Design</h3>
+          <p class="text-sm text-zinc-400">Dark theme default, saffron (#FF9933) accent. JetBrains Mono for headings, Inter for body. Terminal-inspired hero.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-zinc-800/50">
+    <div class="max-w-3xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="font-mono text-sm text-zinc-500">
+        <span class="text-saffron-400">&lt;</span> Built with vanilla JS & Tailwind <span class="text-saffron-400">/&gt;</span>
+      </div>
+      <div class="text-sm text-zinc-600">
+        &copy; 2026 Raj Bandi. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme persistence
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+  </script>
+</body>
+</html>
