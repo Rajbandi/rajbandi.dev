@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog — Raj Bandi</title>
   <meta name="description" content="Articles on .NET, mobile development, blockchain, bioinformatics, and more by Raj Bandi.">
+  <link rel="canonical" href="https://rajbandi.dev/blog/">
+  <link rel="alternate" type="application/rss+xml" title="Raj Bandi Blog" href="https://rajbandi.dev/blog/feed.xml">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -31,43 +33,210 @@
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="bg-zinc-950 text-zinc-300 font-sans antialiased">
+
+  <!-- Navigation -->
   <nav class="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
     <div class="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href="../" class="font-mono font-bold text-lg text-saffron-400 hover:text-saffron-300 transition-colors">&lt;rb /&gt;</a>
-      <a href="../#blog" class="text-sm text-zinc-400 hover:text-saffron-400 transition-colors font-mono">back to site</a>
+      <div class="flex items-center gap-6">
+        <a href="../" class="text-sm text-zinc-400 hover:text-saffron-400 transition-colors font-mono">home</a>
+        <span class="text-sm text-saffron-400 font-mono">blog</span>
+        <a href="../uses.html" class="text-sm text-zinc-400 hover:text-saffron-400 transition-colors font-mono">/uses</a>
+        <a href="feed.xml" class="text-zinc-500 hover:text-saffron-400 transition-colors" title="RSS Feed" aria-label="RSS Feed">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-8.18v4.819c12.951.115 23.428 10.602 23.5 23.501h4.5c-.072-15.832-12.947-28.685-28-28.32z"/></svg>
+        </a>
+      </div>
     </div>
   </nav>
-  <main class="max-w-3xl mx-auto px-6 pt-32 pb-24">
-    <h1 class="font-mono text-3xl font-bold text-zinc-100 mb-2"><span class="text-saffron-400">#</span> blog</h1>
+
+  <!-- Blog List View -->
+  <main id="blog-list-view" class="max-w-3xl mx-auto px-6 pt-32 pb-24">
+    <h1 class="font-mono text-3xl md:text-4xl font-bold text-zinc-100 mb-2">
+      <span class="text-saffron-400">#</span> blog
+    </h1>
+    <p class="text-zinc-400 mb-8">Thoughts on .NET, mobile dev, blockchain, bioinformatics, and building open-source tools.</p>
     <div class="w-16 h-1 bg-saffron-400 mb-12 rounded-full"></div>
     <div id="posts-list"></div>
+    <div id="posts-empty" class="hidden text-center py-16">
+      <div class="font-mono text-zinc-500 text-sm">
+        <p class="text-4xl mb-4">{ }</p>
+        <p>No articles yet. Check back soon.</p>
+      </div>
+    </div>
   </main>
+
+  <!-- Article View (hidden by default) -->
+  <main id="article-view" class="hidden max-w-3xl mx-auto px-6 pt-32 pb-24">
+    <button id="back-btn" class="inline-flex items-center gap-2 text-saffron-400 hover:text-saffron-300 transition-colors font-mono text-sm mb-8">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/></svg>
+      back to articles
+    </button>
+    <article id="article-content" class="prose prose-invert prose-saffron max-w-none">
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-zinc-800/50">
+    <div class="max-w-3xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="font-mono text-sm text-zinc-500">
+        <span class="text-saffron-400">&lt;</span> Built with vanilla JS & Tailwind <span class="text-saffron-400">/&gt;</span>
+      </div>
+      <div class="text-sm text-zinc-600">
+        &copy; 2026 Raj Bandi. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
   <script>
-    (async function() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'light') document.documentElement.classList.remove('dark');
+  (function() {
+    'use strict';
 
-      const res = await fetch('posts/index.json');
-      const posts = await res.json();
-      const container = document.getElementById('posts-list');
+    // Theme
+    var savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.documentElement.classList.remove('dark');
 
-      posts.forEach(function(post) {
-        const el = document.createElement('a');
-        el.href = '../#blog/' + post.slug;
-        el.className = 'block bg-zinc-900 border border-zinc-800 rounded-lg p-6 mb-4 hover:border-saffron-400/50 transition-all';
-        el.innerHTML =
-          '<div class="flex items-center gap-2 mb-2">' +
-          '<span class="font-mono text-xs text-zinc-500">' + post.date + '</span>' +
-          '<span class="text-zinc-700">|</span>' +
-          '<span class="text-xs text-zinc-500">' + (post.readTime || '') + '</span></div>' +
-          '<h2 class="font-mono font-semibold text-lg text-zinc-200 mb-2">' + post.title + '</h2>' +
-          '<p class="text-sm text-zinc-400">' + (post.excerpt || '') + '</p>' +
-          (post.tags ? '<div class="flex gap-2 mt-3">' + post.tags.map(function(t) {
-            return '<span class="text-xs text-saffron-400 bg-saffron-400/10 px-2 py-0.5 rounded font-mono">' + t + '</span>';
-          }).join('') + '</div>' : '');
-        container.appendChild(el);
+    // DOM refs
+    var listView = document.getElementById('blog-list-view');
+    var articleView = document.getElementById('article-view');
+    var articleContent = document.getElementById('article-content');
+    var postsList = document.getElementById('posts-list');
+    var postsEmpty = document.getElementById('posts-empty');
+    var backBtn = document.getElementById('back-btn');
+
+    // Markdown parser
+    function parseMarkdown(md) {
+      var html = md
+        .replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code class="language-$1">$2</code></pre>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+        .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+        .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+        .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy">')
+        .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
+        .replace(/^---$/gm, '<hr>')
+        .replace(/^- (.+)$/gm, '<li>$1</li>')
+        .replace(/^(?!<[hluobpi]|<\/|<hr|<pre|<code|<strong|<em|<a |<img)(.+)$/gm, '<p>$1</p>');
+      html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+      return html;
+    }
+
+    function parseFrontmatter(content) {
+      var match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+      if (!match) return { meta: {}, body: content };
+      var meta = {};
+      match[1].split('\n').forEach(function(line) {
+        var parts = line.match(/^(\w+):\s*(.+)$/);
+        if (parts) {
+          var value = parts[2].trim();
+          if (value.startsWith('[') && value.endsWith(']')) {
+            value = value.slice(1, -1).split(',').map(function(s) { return s.trim().replace(/"/g, ''); });
+          } else {
+            value = value.replace(/^["']|["']$/g, '');
+          }
+          meta[parts[1]] = value;
+        }
       });
-    })();
+      return { meta: meta, body: match[2] };
+    }
+
+    // Show article list
+    function showList() {
+      listView.classList.remove('hidden');
+      articleView.classList.add('hidden');
+      document.title = 'Blog — Raj Bandi';
+      history.pushState(null, '', './');
+    }
+
+    // Show single article
+    async function showArticle(slug) {
+      try {
+        var response = await fetch('posts/' + slug + '.md');
+        if (!response.ok) throw new Error('Not found');
+        var text = await response.text();
+        var parsed = parseFrontmatter(text);
+
+        var headerHtml =
+          '<div class="mb-8">' +
+          '<h1 class="text-3xl md:text-4xl font-bold font-mono text-zinc-100 mb-4">' + (parsed.meta.title || slug) + '</h1>' +
+          '<div class="flex flex-wrap items-center gap-3 text-sm text-zinc-500">' +
+          '<span class="font-mono">' + (parsed.meta.date || '') + '</span>' +
+          (parsed.meta.tags ? '<div class="flex gap-2">' + parsed.meta.tags.map(function(t) {
+            return '<span class="text-xs text-saffron-400 bg-saffron-400/10 px-2 py-0.5 rounded">' + t + '</span>';
+          }).join('') + '</div>' : '') +
+          '</div></div><hr class="border-zinc-800 mb-8">';
+
+        articleContent.innerHTML = headerHtml + parseMarkdown(parsed.body);
+        listView.classList.add('hidden');
+        articleView.classList.remove('hidden');
+        window.scrollTo(0, 0);
+        document.title = (parsed.meta.title || slug) + ' — Raj Bandi';
+        history.pushState(null, '', '#' + slug);
+      } catch (e) {
+        articleContent.innerHTML = '<p class="text-zinc-500">Article not found.</p>';
+        listView.classList.add('hidden');
+        articleView.classList.remove('hidden');
+      }
+    }
+
+    // Load posts
+    async function loadPosts() {
+      try {
+        var res = await fetch('posts/index.json');
+        if (!res.ok) throw new Error();
+        var posts = await res.json();
+
+        if (posts.length === 0) {
+          postsEmpty.classList.remove('hidden');
+          return;
+        }
+
+        posts.forEach(function(post) {
+          var el = document.createElement('a');
+          el.href = '#' + post.slug;
+          el.className = 'blog-card block bg-zinc-900 border border-zinc-800 rounded-lg p-6 mb-4 hover:border-saffron-400/50 transition-all cursor-pointer';
+          el.onclick = function(e) {
+            e.preventDefault();
+            showArticle(post.slug);
+          };
+          el.innerHTML =
+            '<div class="flex items-center gap-2 mb-2">' +
+            '<span class="font-mono text-xs text-zinc-500">' + post.date + '</span>' +
+            '<span class="text-zinc-700">|</span>' +
+            '<span class="text-xs text-zinc-500">' + (post.readTime || '5 min read') + '</span></div>' +
+            '<h2 class="font-mono font-semibold text-lg text-zinc-200 mb-2">' + post.title + '</h2>' +
+            '<p class="text-sm text-zinc-400">' + (post.excerpt || '') + '</p>' +
+            (post.tags ? '<div class="flex gap-2 mt-3">' + post.tags.map(function(t) {
+              return '<span class="text-xs text-saffron-400 bg-saffron-400/10 px-2 py-0.5 rounded font-mono">' + t + '</span>';
+            }).join('') + '</div>' : '');
+          postsList.appendChild(el);
+        });
+      } catch (e) {
+        postsEmpty.classList.remove('hidden');
+      }
+    }
+
+    // Back button
+    backBtn.addEventListener('click', function() { showList(); });
+
+    // Handle hash on load
+    function handleHash() {
+      var hash = window.location.hash.replace('#', '');
+      if (hash) showArticle(hash);
+    }
+
+    window.addEventListener('popstate', function() {
+      var hash = window.location.hash.replace('#', '');
+      if (hash) { showArticle(hash); } else { showList(); }
+    });
+
+    // Init
+    loadPosts();
+    handleHash();
+  })();
   </script>
 </body>
 </html>
